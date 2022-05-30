@@ -19,3 +19,7 @@ Feature: Comprar articulo con una tarjeta de credito
     Given La pagina esta estable
     When doy click en generar tarjeta
     And capturamos datos de la tarjeta
+    And Capturo monto del producto
+    And Ingreso la cantidad "3" a comprar
+    And Doy click en Agregar
+
