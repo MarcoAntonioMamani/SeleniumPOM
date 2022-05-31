@@ -20,6 +20,15 @@ public class BalanceTarjetaPage {
 
     @FindBy(linkText = "Cart") private WebElement btn_cart;  // el linkText se utiliza cuando un componente contiene un href
 
+    @FindBy(xpath = "//td[1]/b/font") private WebElement lbl_tarjeta;
+    @FindBy(xpath = "//tr/td[2]/b/font") private WebElement lbl_montoCompra;
+    @FindBy(xpath = "//td[3]/b/font")private WebElement lbl_mes;
+    @FindBy(xpath = "//td[4]/b/font")private WebElement lbl_anio;
+    @FindBy(xpath = "//td[5]/b/font")private WebElement lbl_cvv;
+    @FindBy(xpath = "//td[6]/b/font")private WebElement lbl_orderId
+            ;
+    @FindBy(xpath = "//h4/span")private WebElement lbl_saldo;
+
     public BalanceTarjetaPage(WebDriver d) {
         this.driver=d;
         wait=new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -40,6 +49,37 @@ public class BalanceTarjetaPage {
     }
     public void CapturarClickBtnCart(){
         btn_cart.click();
+    }
+
+    public void validarSaldo(){
+        double TotalVenta=Double.parseDouble(ComprarPage.montoProducto)*Double.parseDouble(ComprarPage.cantidad);
+        double saldo=Double.parseDouble(CapturarDatosTarjetasPage.monto)-TotalVenta;
+
+        double CreditoBalance=Double.parseDouble(lbl_saldo.getText());
+
+        Assert.assertEquals(""+saldo,""+CreditoBalance);
+
+        System.out.println("Validando Saldo = "+saldo+"  Saldo Pantalla = "+CreditoBalance);
+
+    }
+
+    public void validarDatosTarjeta(){
+        System.out.println("Comparando Datos "+lbl_tarjeta.getText()+" = "+CapturarDatosTarjetasPage.tarjeta);
+        Assert.assertEquals(lbl_tarjeta.getText(),CapturarDatosTarjetasPage.tarjeta);
+        System.out.println("Comparando Datos "+lbl_mes.getText()+" = "+CapturarDatosTarjetasPage.mes.replace("0",""));
+        Assert.assertEquals(lbl_mes.getText(),CapturarDatosTarjetasPage.mes.replace("0",""));
+        System.out.println("Comparando Datos "+lbl_anio.getText()+" = "+CapturarDatosTarjetasPage.anio);
+        Assert.assertEquals(lbl_anio.getText(),CapturarDatosTarjetasPage.anio);
+        System.out.println("Comparando Datos "+lbl_cvv.getText()+" = "+CapturarDatosTarjetasPage.cvv);
+        Assert.assertEquals(lbl_cvv.getText(),CapturarDatosTarjetasPage.cvv);
+        System.out.println("Comparando Datos "+lbl_orderId.getText()+" = "+CapturarRegistroCompraPage.nroOrden);
+        Assert.assertEquals(lbl_orderId.getText(),CapturarRegistroCompraPage.nroOrden);
+
+        Double Montocompra=Double.parseDouble(lbl_montoCompra.getText().replace("$",""));
+        double TotalVenta=Double.parseDouble(ComprarPage.montoProducto)*Double.parseDouble(ComprarPage.cantidad);
+        Assert.assertEquals(""+Montocompra,""+TotalVenta);
+        System.out.println("Comparando Datos "+Montocompra+" = "+TotalVenta);
+
     }
 
 }

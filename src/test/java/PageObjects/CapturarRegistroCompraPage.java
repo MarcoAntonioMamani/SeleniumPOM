@@ -18,7 +18,7 @@ public class CapturarRegistroCompraPage {
     @FindBy(xpath = "//td[2]/h3/strong") private WebElement lbl_orden;
     @FindBy(xpath = "//*[@class='button special']") private WebElement btn_Home;
 
-
+protected static String nroOrden;
 
 
     public CapturarRegistroCompraPage(WebDriver d) {
@@ -34,6 +34,7 @@ public class CapturarRegistroCompraPage {
     }
     public void capturarOrden(){
         System.out.println("text result = "+lbl_orden.getText());
+        nroOrden=lbl_orden.getText();
 
     }
     public void ClickHome(){

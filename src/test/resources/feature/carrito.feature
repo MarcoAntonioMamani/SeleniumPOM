@@ -56,10 +56,11 @@ Feature: Comprar articulo con una tarjeta de credito
     When doy click en generar tarjeta
     And capturamos datos de la tarjeta
     And Capturo monto del producto
-    And Ingreso la cantidad "4" a comprar
+    And Ingreso la cantidad "7" a comprar
     And Doy click en Agregar
     And Validamos los datos de tarjeta
     And capturo el numero de orden
     And doy click y voy a check credit
     And consultamos datos de limite de la tarjeta
-
+    Then puedo capturar los mensajes del balance de tarjeta "Check Credit Balance"
+    And valido que la tarjeta sea correcta

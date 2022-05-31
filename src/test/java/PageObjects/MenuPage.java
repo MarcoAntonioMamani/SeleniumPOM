@@ -32,6 +32,12 @@ public class MenuPage {
 
     public void clickVerLimiteTarjeta(){
         // Espera que cargue la pagina con el wait
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         wait.until(ExpectedConditions.elementToBeClickable(lnk_verLimiteTarjeta));
         lnk_verLimiteTarjeta.click();
     }

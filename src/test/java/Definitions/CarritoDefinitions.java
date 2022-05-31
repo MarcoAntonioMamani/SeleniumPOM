@@ -129,4 +129,10 @@ public class CarritoDefinitions {
         orden.ClickHome();
         menu.clickVerLimiteTarjeta();
     }
+
+    @And("valido que la tarjeta sea correcta")
+    public void validoQueLaTarjetaSeaCorrecta() {
+saldoCredito.validarSaldo();
+saldoCredito.validarDatosTarjeta();
+    }
 }
