@@ -13,6 +13,8 @@ public class CarritoDefinitions {
     VerCreditoTarjeta visualizar;
     BalanceTarjetaPage saldoCredito;
     ComprarPage compra;
+    ValidarTarjetaPage tarjeta;
+    CapturarRegistroCompraPage orden;
     public CarritoDefinitions() {
 
         menu=new MenuPage(Hooks.driver);
@@ -20,6 +22,8 @@ public class CarritoDefinitions {
         visualizar=new VerCreditoTarjeta(Hooks.driver);
         saldoCredito=new BalanceTarjetaPage(Hooks.driver);
         compra=new ComprarPage(Hooks.driver);
+        tarjeta=new ValidarTarjetaPage(Hooks.driver);
+        orden=new CapturarRegistroCompraPage(Hooks.driver);
     }
 
     @Given("La pagina esta estable")
@@ -89,5 +93,40 @@ public class CarritoDefinitions {
     @And("Doy click en Agregar")
     public void doyClickEnAgregar() {
         compra.ClickAgregarCarrito();
+    }
+
+    @And("Validamos los datos de tarjeta")
+    public void validamosLosDatosDeTarjeta() {
+        tarjeta.CapturarMonto();
+        tarjeta.IngresarDatosTarjeta();
+    }
+
+
+
+    @And("capturo el numero de orden")
+    public void capturoElNumeroDeOrden() {
+    orden.capturarOrden();
+    }
+
+    @And("doy click")
+    public void doyClick() {
+    orden.ClickHome();
+
+    }
+
+    @Then("Valido el pago exitoso {string}")
+    public void validoElPagoExitoso(String mensaje) {
+        orden.ValidarMensajePayment(mensaje);
+    }
+
+    @And("valido mensaje Home {string}")
+    public void validoMensajeHome(String mensaje) {
+    compra.ValidarMensajeHome(mensaje);
+    }
+
+    @And("doy click y voy a check credit")
+    public void doyClickYVoyACheckCredit() {
+        orden.ClickHome();
+        menu.clickVerLimiteTarjeta();
     }
 }

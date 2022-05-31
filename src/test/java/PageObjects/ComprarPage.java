@@ -1,5 +1,6 @@
 package PageObjects;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,11 +16,12 @@ public class ComprarPage {
   private WebDriver driver;
   private WebDriverWait wait;
 
-  protected String montoProducto;
-
+  protected static String montoProducto;
+  protected static String cantidad;
   @FindBy(name = "quantity") private WebElement cbx_cantidad;
   @FindBy(xpath = "//input") private  WebElement btn_comprar;
   @FindBy(tagName = "h3") private WebElement lbl_monto;
+  @FindBy(tagName = "h2") private WebElement validarMensaje;
 
   public ComprarPage(WebDriver d) {
 
@@ -28,6 +30,21 @@ public class ComprarPage {
     PageFactory.initElements(driver,this);
   }
 
+  public void ValidarMensajeHome(String mensaje){
+
+    try {
+      Thread.sleep(4000);
+
+
+      wait.until(ExpectedConditions.visibilityOf(validarMensaje));
+      Assert.assertEquals(mensaje,validarMensaje.getText());
+
+
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
+  }
   public void montoProducto(){
 
     wait.until(ExpectedConditions.visibilityOf(lbl_monto));
@@ -37,9 +54,10 @@ public class ComprarPage {
 
   }
 
-  public void IngresoCantidad(String Cantidad){
+  public void IngresoCantidad(String Cantidad0){
     Select combo=new Select(cbx_cantidad);
-    combo.selectByValue(Cantidad);
+    combo.selectByValue(Cantidad0);
+    cantidad=Cantidad0;
 
   /*  combo.selectByValue("2");
     combo.selectByIndex(1);
