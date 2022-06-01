@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Locale;
 import java.util.Objects;
 
 public class AddCustomerPage {
@@ -15,9 +16,10 @@ public class AddCustomerPage {
 
     private WebDriver driver;
     private WebDriverWait wait;
-    @FindBy(tagName = "Done")
+    @FindBy(xpath = "//*[@id='done']//following-sibling::label")
+    //@FindBy(xpath = "//div[1]/label")
     WebElement rd_done;
-    @FindBy(id = "pending")
+    @FindBy(id = "//div[2]/label")
     WebElement rd_pending;
     @FindBy(id = "fname")
     WebElement txt_name;
@@ -42,18 +44,23 @@ public class AddCustomerPage {
 
     }
 
-    public void RellenarCampos(){
-      /*  wait.until(ExpectedConditions.visibilityOf(rd_done));
+    public void clickDone(String check){
+        wait.until(ExpectedConditions.elementToBeClickable(rd_done));
+
+        if (check.toLowerCase().equals("done")){
+            rd_done.click();
+        }else if(check.toLowerCase().equals("pending"))rd_pending.click();
 
 
+    }
 
-        rd_done.click();
-*/
-        txt_name.sendKeys("Marco Antonio");
-        txtlame.sendKeys("Mamani Chura");
-        txt_email .sendKeys("marcoantoniomamanichura@gmail.com");
-        rd_addres.sendKeys("Barrio nueva america uv4578");
-        txt_number.sendKeys("78140528");
+    public void RellenarCampos(String nombre,String apellido,String email,String direccion,String telefono){
+
+        txt_name.sendKeys(nombre);
+        txtlame.sendKeys(apellido);
+        txt_email .sendKeys(email);
+        rd_addres.sendKeys(direccion);
+        txt_number.sendKeys(telefono);
 
         try {
             Thread.sleep(5000);

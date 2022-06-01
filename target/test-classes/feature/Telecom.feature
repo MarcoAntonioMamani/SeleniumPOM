@@ -9,7 +9,10 @@ Feature: Registrar Datos de un cliente
     Given la web esta disponible
     When doy clic en telecom project
     And aregamos un nuevo cliente
-    And rellenamos los campos del formulario
+    And ingreso datos del cliente
+      | check | nombre       | apellido     | email           | direccion            | telefono |
+      | done  | Marco Antonio | Mamani Chura | marco@gmail.com | Barrio nueva america | 78140596 |
+
 
 
 

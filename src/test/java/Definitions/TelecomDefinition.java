@@ -3,9 +3,13 @@ package Definitions;
 import PageObjects.Telecom.AddCustomerPage;
 import PageObjects.Telecom.MenuDemoGuruPage;
 import PageObjects.Telecom.MenuTelecomPage;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+
+import java.util.List;
+import java.util.Map;
 
 public class TelecomDefinition {
 
@@ -35,8 +39,17 @@ public class TelecomDefinition {
         telecom.ClickAgregarcliente();
     }
 
-    @And("rellenamos los campos del formulario")
-    public void rellenamosLosCamposDelFormulario() {
-        customer.RellenarCampos();
+
+
+
+    @And("ingreso datos del cliente")
+    public void ingresoDatosDelCliente(DataTable clientes) {
+        List<Map<String,String>> lista=clientes.asMaps(String.class,String.class);
+        for (int i = 0; i < lista.size(); i++) {
+            customer.clickDone(lista.get(i).get("check"));
+            customer.RellenarCampos(lista.get(i).get("nombre"),lista.get(i).get("apellido"),
+                    lista.get(i).get("email"),lista.get(i).get("direccion"),lista.get(i).get("telefono"));
+        }
+
     }
 }
