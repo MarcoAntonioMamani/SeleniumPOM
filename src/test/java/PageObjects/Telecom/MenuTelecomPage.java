@@ -18,6 +18,9 @@ public class MenuTelecomPage {
     WebElement lnk_agregarCliente;
 
 
+    @FindBy(linkText = "Add Tariff Plan")
+    WebElement lnk_agregarTarrifa;
+
 
     public MenuTelecomPage(WebDriver d) {
         this.driver=d;
@@ -29,6 +32,18 @@ public class MenuTelecomPage {
     public void ClickAgregarcliente(){
         wait.until(ExpectedConditions.elementToBeClickable(lnk_agregarCliente));
         lnk_agregarCliente.click();
+
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void ClickConsultarTarifa(){
+        wait.until(ExpectedConditions.elementToBeClickable(lnk_agregarTarrifa));
+        lnk_agregarTarrifa.click();
 
         try {
             Thread.sleep(4000);

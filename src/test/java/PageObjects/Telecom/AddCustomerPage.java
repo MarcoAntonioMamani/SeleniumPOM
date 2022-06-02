@@ -1,5 +1,6 @@
 package PageObjects.Telecom;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,7 +34,7 @@ public class AddCustomerPage {
     WebElement txt_number;
     @FindBy(name = "submit")
     WebElement btn_submit;
-
+    private Alert MensajeAlerta;
 
 
 
@@ -73,5 +74,22 @@ public class AddCustomerPage {
 
     }
 
+    public void clickConfirmarDatos(){
+        btn_submit.click();
+    }
+
+    public void ObtenerMensajeAlerta(){
+
+
+        try {
+            Thread.sleep(5000);
+            MensajeAlerta=driver.switchTo().alert();
+            System.out.println("El mensaje de la alerta es: "+MensajeAlerta.getText());
+            MensajeAlerta.accept();
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

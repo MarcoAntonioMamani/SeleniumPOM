@@ -1,12 +1,14 @@
 package Definitions;
 
 import PageObjects.Telecom.AddCustomerPage;
+import PageObjects.Telecom.CustomerPage;
 import PageObjects.Telecom.MenuDemoGuruPage;
 import PageObjects.Telecom.MenuTelecomPage;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -25,13 +27,14 @@ public class TelecomDefinition {
     MenuDemoGuruPage menu;
     MenuTelecomPage telecom;
     AddCustomerPage customer;
-
+    CustomerPage customerPage;
 
     String csv_file_path="src/test/resources/data/test.csv";
     public TelecomDefinition() {
         menu=new MenuDemoGuruPage(Hooks.driver);
         telecom=new MenuTelecomPage(Hooks.driver);
         customer=new AddCustomerPage(Hooks.driver);
+        customerPage=new CustomerPage(Hooks.driver);
     }
 
     @Given("la web esta disponible")
@@ -81,4 +84,26 @@ public class TelecomDefinition {
         }
 
 
+    @And("capturo el customer del cliente")
+    public void capturoElCustomerDelCliente() {
+        customerPage.CapturarCustomer();
+        customerPage.ClickEnviar();
+
+    }
+
+    @And("Doy clic en Agregar tarifa de customer")
+    public void doyClicEnAgregarTarifaDeCustomer() {
+
+        telecom.ClickConsultarTarifa();
+    }
+
+    @And("doy click Agregar Cliente")
+    public void doyClickAgregarCliente() {
+        customer.clickConfirmarDatos();
+    }
+
+    @Then("obtengo el mensaje de alerta")
+    public void obtengoElMensajeDeAlerta() {
+        customer.ObtenerMensajeAlerta();
+    }
 }
