@@ -14,8 +14,14 @@ Feature: Registrar Datos de un cliente
       | done  | Marco Antonio | Mamani Chura | marco@gmail.com | Barrio nueva america | 78140596 |
     And capturo el customer del cliente
     And Doy clic en Agregar tarifa de customer
-    
-
+    And ingreso el customer
+    Then visualizo el nombre del cliente y el estado
+      | nombre        | estado |
+      | Marco Antonio | active |
+    And doy click en tarifa
+    And doy clic en boton tarifa
+    Then Valido mensaje de felicitacion "Congratulation Tariff Plan assigned"
+    And Regreso al Home
 
 
   Scenario: Cuando registro datos desde un csv.

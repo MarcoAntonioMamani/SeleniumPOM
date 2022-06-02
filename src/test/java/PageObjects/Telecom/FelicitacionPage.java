@@ -1,5 +1,6 @@
 package PageObjects.Telecom;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,29 +10,24 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class MenuTelecomPage {
+public class FelicitacionPage {
 
     private WebDriver driver;
     private WebDriverWait wait;
 
-    @FindBy(linkText = "Add Customer")
-    WebElement lnk_agregarCliente;
+    @FindBy(tagName = "h2") private WebElement lbl_congrats;
+    @FindBy(xpath = "//a[@class='button']") private WebElement btn_home;
 
 
-    @FindBy(linkText = "Add Tariff Plan to Customer")
-    WebElement lnk_agregarTarrifa;
-
-
-    public MenuTelecomPage(WebDriver d) {
+    public FelicitacionPage(WebDriver d) {
         this.driver=d;
         wait=new WebDriverWait(driver, Duration.ofSeconds(20));
         PageFactory.initElements(driver,this);
-
     }
 
-    public void ClickAgregarcliente(){
-        wait.until(ExpectedConditions.elementToBeClickable(lnk_agregarCliente));
-        lnk_agregarCliente.click();
+    public void ValidarCongrats(String Felicitacion){
+        wait.until(ExpectedConditions.visibilityOf(lbl_congrats));
+        Assert.assertEquals(Felicitacion,lbl_congrats.getText());
 
         try {
             Thread.sleep(4000);
@@ -40,16 +36,13 @@ public class MenuTelecomPage {
         }
 
     }
-
-    public void ClickConsultarTarifa(){
-        wait.until(ExpectedConditions.elementToBeClickable(lnk_agregarTarrifa));
-        lnk_agregarTarrifa.click();
-
+    public void ClickHome(){
+        btn_home.click();
         try {
             Thread.sleep(4000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
+
 }

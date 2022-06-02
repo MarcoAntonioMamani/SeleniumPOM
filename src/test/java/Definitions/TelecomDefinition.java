@@ -1,9 +1,6 @@
 package Definitions;
 
-import PageObjects.Telecom.AddCustomerPage;
-import PageObjects.Telecom.CustomerPage;
-import PageObjects.Telecom.MenuDemoGuruPage;
-import PageObjects.Telecom.MenuTelecomPage;
+import PageObjects.Telecom.*;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
@@ -28,13 +25,18 @@ public class TelecomDefinition {
     MenuTelecomPage telecom;
     AddCustomerPage customer;
     CustomerPage customerPage;
-
+    ValidarTarifaPage validar;
     String csv_file_path="src/test/resources/data/test.csv";
+    IngresarCustomerPage ingreso;
+    FelicitacionPage felicitacion;
     public TelecomDefinition() {
         menu=new MenuDemoGuruPage(Hooks.driver);
         telecom=new MenuTelecomPage(Hooks.driver);
         customer=new AddCustomerPage(Hooks.driver);
         customerPage=new CustomerPage(Hooks.driver);
+        validar=new ValidarTarifaPage(Hooks.driver);
+        ingreso=new IngresarCustomerPage(Hooks.driver);
+        felicitacion=new FelicitacionPage(Hooks.driver);
     }
 
     @Given("la web esta disponible")
@@ -105,5 +107,53 @@ public class TelecomDefinition {
     @Then("obtengo el mensaje de alerta")
     public void obtengoElMensajeDeAlerta() {
         customer.ObtenerMensajeAlerta();
+    }
+
+    @And("ingreso el customer")
+    public void ingresoElCustomer() {
+    ingreso.IngresarCustomerID();
+    ingreso.ClickSumbit();
+    }
+
+    @And("doy click en tarifa")
+    public void doyClickEnTarifa() {
+        validar.ClickTarifa();
+
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @And("doy clic en boton tarifa")
+    public void doyClicEnBotonTarifa() {
+
+        validar.ClickBtnTarrifa();
+
+    }
+
+    @Then("Valido mensaje de felicitacion {string}")
+    public void validoMensajeDeFelicitacion(String arg0) {
+
+        felicitacion.ValidarCongrats(arg0);
+    }
+
+    @And("Regreso al Home")
+    public void regresoAlHome() {
+    felicitacion.ClickHome();
+    }
+
+    @Then("visualizo el nombre del cliente y el estado")
+    public void visualizoElNombreDelClienteYElEstado(DataTable clientes) {
+
+        List<Map<String,String>> lista=clientes.asMaps(String.class,String.class);
+        for (int i = 0; i < lista.size(); i++) {
+            validar.ValidarNombre(lista.get(i).get("nombre"));
+            validar.ValidarEstado(lista.get(i).get("estado"));
+
+        }
+
+
     }
 }
