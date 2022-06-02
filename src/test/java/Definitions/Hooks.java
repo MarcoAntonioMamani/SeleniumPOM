@@ -28,10 +28,7 @@ public class Hooks {
         //ChromeOptions options= new ChromeOptions();
 
        // options.addArguments("--disable-popup-blocking");
-
-
     }
-
      // el trabajo del robot automatizado
 
 

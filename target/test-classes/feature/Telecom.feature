@@ -13,6 +13,12 @@ Feature: Registrar Datos de un cliente
       | check | nombre       | apellido     | email           | direccion            | telefono |
       | done  | Marco Antonio | Mamani Chura | marco@gmail.com | Barrio nueva america | 78140596 |
 
+  Scenario: Cuando registro datos desde un csv.
+    Given la web esta disponible
+    When doy clic en telecom project
+    And aregamos un nuevo cliente
+    And ingreso datos del cliente desde un csv
+
 
 
 

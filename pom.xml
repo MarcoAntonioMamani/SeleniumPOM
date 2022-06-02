@@ -40,10 +40,27 @@
             <version>7.3.4</version>
             <scope>test</scope>
         </dependency>
+        <!-- referencias para driver chrome, firefox generico sin driver externos-->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>5.2.0</version>
+        </dependency>
+        <!-- referencias para poder abrir archivos csv -->
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>5.5.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.8</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.10.0</version>
         </dependency>
 
     </dependencies>
