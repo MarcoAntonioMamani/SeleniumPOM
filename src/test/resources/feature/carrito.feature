@@ -14,7 +14,7 @@ Feature: Comprar articulo con una tarjeta de credito
     Then puedo capturar los mensajes del balance de tarjeta "Check Credit Balance"
     And capturo el mensaje de "This Card Not Any Transactions"
 
-
+  @Pruebita
   Scenario: Cuando compro una sola vez
     Given La pagina esta estable
     When doy click en generar tarjeta
@@ -28,7 +28,7 @@ Feature: Comprar articulo con una tarjeta de credito
     And doy click
     And valido mensaje Home "Mother Elephant With Babies Soft Toy"
 
-
+  @Pruebita
   Scenario Outline: Cuando compro varias veces
     Given La pagina esta estable
     When doy click en generar tarjeta
@@ -50,7 +50,7 @@ Feature: Comprar articulo con una tarjeta de credito
     #| 10       |
 
 
-
+  @Pruebita
   Scenario: Validar Saldo de Tarjeta
     Given La pagina esta estable
     When doy click en generar tarjeta
