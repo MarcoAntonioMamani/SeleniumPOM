@@ -4,7 +4,7 @@ Feature: Registrar Datos de un cliente
   Para obtener un plan de telecomunicaciones
 
 
-  @Pruebita
+
   Scenario: Cuando registro datos de manera correcta.
     Given la web esta disponible
     When doy clic en telecom project

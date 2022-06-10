@@ -28,7 +28,6 @@ Feature: Comprar articulo con una tarjeta de credito
     And doy click
     And valido mensaje Home "Mother Elephant With Babies Soft Toy"
 
-  @Pruebita
   Scenario Outline: Cuando compro varias veces
     Given La pagina esta estable
     When doy click en generar tarjeta
@@ -50,7 +49,7 @@ Feature: Comprar articulo con una tarjeta de credito
     #| 10       |
 
 
-  @Pruebita
+
   Scenario: Validar Saldo de Tarjeta
     Given La pagina esta estable
     When doy click en generar tarjeta

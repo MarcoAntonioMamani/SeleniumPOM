@@ -8,7 +8,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/feature",
         glue = "Definitions",  //el nombre de las clases implementadas de los features
-        plugin = {"json:target/cucumber-reporte/cucumber.json","html:target/cucumber-report/cucumber-report.html"},
+       // plugin = {"json:target/cucumber-reporte/cucumber.json","html:target/cucumber-report/cucumber-report.html"},
+        plugin = {"json:src/test/resource/report/cucumber_report.json"},
         tags = "@Pruebita"
 )
 public class runTest {
