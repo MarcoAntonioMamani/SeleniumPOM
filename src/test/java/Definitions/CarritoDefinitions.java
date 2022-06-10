@@ -6,6 +6,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.io.IOException;
+
+import static Support.screemshot.pantallazo;
+
 public class CarritoDefinitions {
 
     MenuPage menu;
@@ -40,7 +44,7 @@ public class CarritoDefinitions {
     }
 
     @And("capturamos datos de la tarjeta")
-    public void capturamosDatosDeLaTarjeta() {
+    public void capturamosDatosDeLaTarjeta() throws IOException {
 
         captura.CambiarVentana();
 
@@ -48,7 +52,7 @@ public class CarritoDefinitions {
         captura.CapturarCvv();
         captura.CapturarFecha();
         captura.CapturarMontoDisponible();
-
+        pantallazo();
 
     }
 
@@ -104,14 +108,16 @@ public class CarritoDefinitions {
 
 
     @And("capturo el numero de orden")
-    public void capturoElNumeroDeOrden() {
+    public void capturoElNumeroDeOrden()throws IOException {
+
     orden.capturarOrden();
+    pantallazo();
     }
 
     @And("doy click")
-    public void doyClick() {
+    public void doyClick() throws IOException {
     orden.ClickHome();
-
+        pantallazo();
     }
 
     @Then("Valido el pago exitoso {string}")

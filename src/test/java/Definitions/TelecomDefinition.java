@@ -19,6 +19,8 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
+import static Support.screemshot.pantallazo;
+
 public class TelecomDefinition {
 
     MenuDemoGuruPage menu;
@@ -46,8 +48,9 @@ public class TelecomDefinition {
     }
 
     @When("doy clic en telecom project")
-    public void doyClicEnTelecomProject() {
+    public void doyClicEnTelecomProject() throws IOException {
     menu.ClickTelecomProject();
+    pantallazo();
 
     }
 

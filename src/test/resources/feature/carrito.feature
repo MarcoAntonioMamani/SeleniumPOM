@@ -4,7 +4,7 @@ Feature: Comprar articulo con una tarjeta de credito
   Para ahorrar tiempo en hacer tramite personal
 
 
-
+  @Pruebita
   Scenario: Cuando no hay transacciones de Tarjeta
     Given La pagina esta estable
     When doy click en generar tarjeta
